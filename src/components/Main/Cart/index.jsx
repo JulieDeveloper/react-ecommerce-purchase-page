@@ -1,48 +1,49 @@
 
 import { ReactComponent as IconMinus } from '../../../icons/amount-control-minus.svg'
 import { ReactComponent as IconPlus } from '../../../icons/amount-control-plus.svg'
-import product1 from '../../../images/product-1.jpg'
-import product2 from '../../../images/product-2.jpg'
+// import product1 from '../../../images/product-1.jpg'
+// import product2 from '../../../images/product-2.jpg'
 
 import Style from './Cart.module.css'
 
 const CartData =[
   {
-    id:0,
-    img: product1,
-    name:'破壞補丁修身牛仔褲',
-    price:3999,
-    amount:1
+    id: '1',
+    name: '貓咪罐罐',
+    img: 'https://picsum.photos/300/300?text=1',
+    price: 100,
+    quantity: 2,
   },
   {
-    id:1,
-    img:product2,
-    name:'刷色直筒牛仔褲',
-    price:1299,
-    amount:1
+    id: '2',
+    name: '貓咪干干',
+    img: 'https://picsum.photos/300/300?text=2',
+    price: 200,
+    quantity: 1,
   },
 ]
 
-const Item = ({data}) => {
+const Item = ({name, img, price, quantity}) => {
+
   return(
     <div className={Style.item}>
-      <img className={Style.img__container} src={data.img} alt={data.name} />
+      <img className={Style.img__container} src={img} alt={name} />
       <div className={Style.info__wrapper}>
         <div className={Style.info}>
-          <div className={Style.info__name}>{data.name}</div>
+          <div className={Style.info__name}>{name}</div>
             <div className={Style.info__amount__wrapper}>
               <button className={Style.btn__controlAmount}>
                 <IconMinus />
               </button>
               <span className={Style.info__amount}>
-                {data.amount}
+                {quantity}
               </span>
               <button className={Style.btn__controlAmount}>
                 <IconPlus />
               </button>
             </div>
         </div>
-        <div className={Style.info__price}>${data.price}</div>
+        <div className={Style.info__price}>${price}</div>
       </div>
     </div>
   )
@@ -54,12 +55,7 @@ const Cart = () => {
       {/* <!-- cart title --> */}
       <h3 className={Style.title}>購物籃</h3>
       <div>
-        <Item
-          data = {CartData[0]}
-        />
-        <Item
-          data = {CartData[1]}
-        />
+        {CartData.map(data=> { return <Item {...data} key={data.id}/> } )}
       </div>
       {/* <!-- cart shipping --> */}
       <div className={Style.row}>
