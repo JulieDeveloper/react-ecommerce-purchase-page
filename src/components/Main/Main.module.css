@@ -1,0 +1,62 @@
+
+
+/* mobile first */
+/* :root,[data-theme='dark']{
+  --step-circle-width-mobile: 32px;
+  --step-circle-width-desktop: 24px;
+} */
+
+.main{
+  width: 100%;
+  margin-top: 72px;
+  padding: 0 var(--mobile-edge-width);
+}
+
+.left__panel, .right__panel {
+  margin-top: 32px;
+}
+
+.borderTop{
+  border-top: 1px solid var(--btn-section-border-top);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 24px;
+}
+
+/* desktop ------------------------------------------------------------------- */
+@media screen and (min-width: 375px) {
+  .main{
+    margin-top: 140px;
+    padding: 0 var(--desktop-edge-width);
+  }
+  .main__panel { 
+    display: flex;
+    justify-content: space-between;
+    margin-top: 48px;
+  }
+
+  .left__panel, .right__panel {
+    margin-top: 0;
+  }
+  .right__panel { 
+    width: 40%;
+  }
+
+  .left__panel {
+    width: 50%;
+  }
+
+  .form {
+    margin-top: 64px;
+    margin-bottom: 24px;
+  }
+
+  .progressControl__wrapper{
+    position: relative;
+    margin-top: 0;
+
+  }
+}

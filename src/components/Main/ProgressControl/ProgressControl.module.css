@@ -1,0 +1,68 @@
+.container{
+  display: flex;
+
+  padding-top: 24px;
+  width: 100%;
+  border-top: 1px solid var(--btn-section-border-top);
+}
+.btn__next, .btn__prev{
+  width: 100%;
+  height: 46px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  border-radius: 8px;
+  box-shadow: -1px 2px 4px rgb(0 0 0 / 40%), -1px 2px 4px rgb(255 255 255 / 90%),
+  inset 0 0 0 rgb(255 255 255 / 90%), inset 0 0 0 rgb(0 0 0 / 40%);
+  transition: 0.2s all;
+}
+
+.btn__next:active, .btn__prev:active {
+  opacity: 0.5;
+  box-shadow: 0 0 0 rgb(0 0 0 / 40%), 0 0 0 rgb(255 255 255 / 90%),
+    inset -2px -2px 12px rgb(255 255 255 / 90%),
+    inset 7px 7px 12px rgb(0 0 0 / 40%);
+}
+
+.btn__next {
+  color: var(--next-btn-text);
+  background-color: var(--next-btn-bg);
+}
+
+.btn__prev {
+  margin-right: 30%;
+  color: var(--prev-btn-text);
+  background-color: transparent;
+}
+.btn__prev__text{
+  margin-left: 1rem;
+}
+.btn__next__text{
+  margin-right: 1rem;
+}
+.arrow{
+  line-height: 46px;
+}
+
+@media screen and (min-width: 375px) {
+
+  .btn__next {
+    margin-left: auto;
+    width: 40%;
+  }
+
+  .btn__prev {
+    width: 40%;
+    color: var(--prev-btn-text);
+    background-color: transparent; 
+  }
+}
+
+@media screen and (min-width: 1400px) {
+ .container{
+    position: absolute;
+    top: -71px;
+    margin-top: 0;
+  }
+}

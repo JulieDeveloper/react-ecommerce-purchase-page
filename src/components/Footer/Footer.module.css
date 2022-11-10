@@ -1,0 +1,48 @@
+.container{
+  visibility: hidden;
+}
+
+@media screen and (min-width: 375px) {
+  .container{
+    visibility: visible;
+    position: relative;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 124px;
+    padding: 0 var(--desktop-edge-width);
+    height: 284px;
+    background-color: var(--footer-bg);
+  }
+
+  .column{
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .column__brand{
+    align-self: center;
+  }
+
+  .logo{
+    width: 175px; 
+    height: 30px;
+  }
+
+  .column__title{
+    margin: 64px 0 24px 0;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--primary-text);
+  }
+
+  .column__link{
+    margin-bottom: 8px;
+    color: var(--footer-text);
+  }
+
+  .social__link{
+    margin-right: 9px;
+  }
+
+}
