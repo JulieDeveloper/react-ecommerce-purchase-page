@@ -26,14 +26,14 @@
 // -----------------------------------------------  以上是create react app 初始版
 
 
+import './styles/reset.module.css'
+import './styles/base.module.css';
+import './styles/color.module.css';
 
 import Header from './components/Header'
 import Main from './components/Main/index'
 import Footer from './components/Footer'
 
-import './styles/reset.module.css'
-import './styles/base.module.css';
-import './styles/color.module.css';
 
 function App() {
   return (
