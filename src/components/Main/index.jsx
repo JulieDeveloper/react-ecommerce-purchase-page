@@ -28,7 +28,7 @@ const Main = () => {
       <h2>結帳</h2>
       <div className={Style.main__panel}>
         <div className={Style.left__panel}>
-          <StepProgress/>
+          <StepProgress currentStep={step}/>
           <form className={Style.form}>
             {form}
           </form>

@@ -18,13 +18,11 @@
   width: 100%;
   margin:0 1rem;
   height: 2px;
+  background-color: var(--step-bar-active);
 }
 
-.step__bar.undone{
-  background-color: var(--step-bar-undone);
-}
-.step__bar.done{
-  background-color: var(--step-bar-done);
+.step__bar.disabled{
+  background-color: var(--step-bar-disabled);
 }
 
 .step__circle {
@@ -34,12 +32,21 @@
   line-height: 32px;
   text-align: center;
   border-radius: 50%;
-  color: var(--step-text-undone);
-  background-color: var(--primary-bg);
-  border: 1px solid var(--step-num-border-undone);
+  color: var(--step-active);
+  background-color: transparent;
+  border: 1px solid var(--step-active);
 }
 
+.step__circle.checked{
+  color: var(--step-circle-checked);
+  background-color: var(--step-circle-bg-checked);
+  border: 0;
+}
 
+.step__circle.disabled{
+  color: var(--step-disabled);
+  border: 1px solid var(--step-disabled);
+}
 
 .step__label{
   display: none;
@@ -59,11 +66,14 @@
   .step__label{
     all: unset;
     font-size: 16px;
-    color: var(--step-text-undone);
+    color: var(--step-active);
     line-height: 24px;
-}
+  }
+  .step__label.disabled{
+    color: var(--step-disabled);
+  }
 
-.step__bar{
-  width: 80%;
-}
+  .step__bar{
+    width: 80%;
+  }
 }
