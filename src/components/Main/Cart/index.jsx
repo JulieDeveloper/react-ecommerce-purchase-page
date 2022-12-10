@@ -5,8 +5,9 @@ import { ReactComponent as IconPlus } from '../../../icons/amount-control-plus.s
 // import product2 from '../../../images/product-2.jpg'
 
 import Style from './Cart.module.css'
+import { useState } from 'react'
 
-const CartData =[
+const rawData =[
   {
     id: '1',
     name: '貓咪罐罐',
@@ -23,7 +24,27 @@ const CartData =[
   },
 ]
 
-const Item = ({name, img, price, quantity}) => {
+const Item = ({id, name, img, price, quantity, cartData, setCartData}) => {
+  function handleDecreaseAmount(){
+    if(quantity === 1)return
+    setCartData(cartData.map(data => {
+      if(data.id === id){
+        return {...data, quantity: quantity - 1}
+      }else{
+        return data
+      }
+    }))
+  }
+
+  function handleIncreaseAmount(){
+    setCartData(cartData.map(data => {
+      if(data.id === id){
+        return {...data, quantity: quantity + 1}
+      }else{
+        return data
+      }
+    }))
+  }
 
   return(
     <div className={Style.item}>
@@ -32,13 +53,13 @@ const Item = ({name, img, price, quantity}) => {
         <div className={Style.info}>
           <div className={Style.info__name}>{name}</div>
             <div className={Style.info__amount__wrapper}>
-              <button className={Style.btn__controlAmount}>
+              <button className={Style.btn__controlAmount} onClick={handleDecreaseAmount}>
                 <IconMinus />
               </button>
               <span className={Style.info__amount}>
                 {quantity}
               </span>
-              <button className={Style.btn__controlAmount}>
+              <button className={Style.btn__controlAmount} onClick={handleIncreaseAmount}>
                 <IconPlus />
               </button>
             </div>
@@ -50,12 +71,20 @@ const Item = ({name, img, price, quantity}) => {
 }
 
 const Cart = () => {
+  const [cartData,setCartData] = useState(rawData)
+  
+  function getTotal(data){
+    let result = 0
+    data.forEach((item) => result += item.price*item.quantity)
+    return result.toLocaleString()
+  }
+
   return(
     <div className={Style.container}>
       {/* <!-- cart title --> */}
       <h3 className={Style.title}>購物籃</h3>
       <div>
-        {CartData.map(data=> { return <Item {...data} key={data.id}/> } )}
+        {cartData.map(data=> { return <Item {...data} cartData={cartData} setCartData={setCartData} key={data.id}/> } )}
       </div>
       {/* <!-- cart shipping --> */}
       <div className={Style.row}>
@@ -65,7 +94,7 @@ const Cart = () => {
       {/* <!-- cart total --> */}
       <div className={Style.row}>
         <div>小計</div>
-        <div className={Style.row__price}>$5298</div>
+        <div className={Style.row__price}>$ {getTotal(cartData)}</div>
       </div>
     </div>
   )
