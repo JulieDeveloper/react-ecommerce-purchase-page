@@ -1,7 +1,7 @@
+import { useState } from 'react'
 import Style from './Step2.module.css'
 
-const OptionGroup = ({id, value, title, info, price }) => {
-
+const OptionGroup = ({id, value, title, info, price, selected, setSelected}) => {
   function showPrice(price){
     if(price === 0){
       return '免費'
@@ -10,11 +10,10 @@ const OptionGroup = ({id, value, title, info, price }) => {
     }
   }
   
-
   return(
-    <div className={Style.row}>
-      <input type="radio" id={id} name="shipment" value={value} />
-      <label for={id}>
+    <div className={`${Style.row} ${selected === id?Style.active:''}`} >
+      <input type="radio" id={id} name="shipment" value={value} onClick={()=>{setSelected(id)}} checked={selected === id}/>
+      <label for={id}>  
         <div>
           <p className={Style.title}>{title}</p>
           <p>{info}</p>
@@ -27,6 +26,7 @@ const OptionGroup = ({id, value, title, info, price }) => {
 
 
 const Step2 = () =>{
+  const [selected, setSelected] = useState("standard")
   return(
     <>
       <h2>
@@ -39,6 +39,8 @@ const Step2 = () =>{
           price={0}
           title="標準運送"
           info="約 3~7 個工作天"
+          selected={selected}
+          setSelected={setSelected}
         />
         <OptionGroup
           id="DHL"
@@ -46,6 +48,8 @@ const Step2 = () =>{
           price={500}
           title="DHL 貨運"
           info="48 小時內送達"
+          selected={selected}
+          setSelected={setSelected}
         />        
       </div>
     </>
