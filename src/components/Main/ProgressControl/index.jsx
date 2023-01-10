@@ -2,6 +2,10 @@ import Style from './ProgressControl.module.css'
 
 import { ReactComponent as IconNext } from '../../../icons/arrow-right.svg'
 import { ReactComponent as IconPrev } from '../../../icons/arrow-left.svg'
+import { useContext } from 'react'
+import { CartProductsContext } from '../CartProductsContext'
+import { CardInfoContext } from '../CardInfoContext'
+
 
 function Btn({type, disabled, text, iconDisabled, onClick}){
   if(disabled) return
@@ -36,11 +40,20 @@ function Btn({type, disabled, text, iconDisabled, onClick}){
 }
 
 const ProgressControl = ({step, setStep}) =>{
-
+  const {cardInfo} = useContext(CardInfoContext)
+  const {cartProducts} = useContext(CartProductsContext)
   let prevBtnText = '上一步'
   let nextBtnText = '下一步'
   if(step === 3){
     nextBtnText = '完成訂單'
+  }
+
+   function Total(products) {
+    let total=0
+    products.forEach( product => {
+      total += product.price * product.quantity
+    })
+    return total
   }
 
   return(
@@ -59,6 +72,10 @@ const ProgressControl = ({step, setStep}) =>{
         onClick={() => {
           if(step<3){
             setStep(step + 1)
+          }
+          if(step===3){
+            console.log('Card information:',cardInfo)
+            console.log('Total payment amount:$', Total(cartProducts))
           }
         }}
       />
